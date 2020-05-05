@@ -1,0 +1,23 @@
+{
+  "name": "copia-tinder-backend",
+  "version": "1.0.0",
+  "description": "Copia de tinder: backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luisdarivero/copia-tinder-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luisdarivero/copia-tinder-backend/issues"
+  },
+  "homepage": "https://github.com/luisdarivero/copia-tinder-backend#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
