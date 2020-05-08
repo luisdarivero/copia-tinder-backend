@@ -9,13 +9,8 @@ const { errors } = require('celebrate');
 server.use(express.urlencoded({ extended: true }));
 server.use(express.json());
 
-// Endpoints
-
-//TODO: borrar
-server.get('/', (req, res) => res.send('Hello World!')); 
-
-//TODO: añadir rurtas
-//server.use('/api/v1', require('../router'));
+// Endpoints: se añaden rutas al servidor
+server.use('/api/v1', require('../router'));
 
 //Manejo de errores en el middleware para cachar los errores mandados por celebrate
 server.use(errors());
