@@ -6,8 +6,8 @@ require('dotenv').config()
 // NOTA: No es necesario agregar "index" cuando se solicita mediante 
 const { server, PORT } = require('./server');
 
-//TODO: añadir una base de datos en mongo
-//require('./database');
+//Se añade una base de datos de mongodb
+require('./database');
 
 // Encedemos servidor
 server.listen(PORT, () => console.log(`Listening on ${PORT}`));
