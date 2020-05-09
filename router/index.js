@@ -7,7 +7,9 @@ const router = express.Router();
 
 //Se añaden rutas publicas
 router.use(require('./PublicRoutes'));
+
 //Se añaden rutas privadas
+//TODO: router.use(verifyToken);
 router.use(require('./PrivateRoutes'));
 
 module.exports = router;
