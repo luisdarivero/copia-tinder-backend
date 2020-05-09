@@ -3,6 +3,6 @@ const express = require('express');
 const router = express.Router();
 
 //TODO: borrar, este es solo un ejemplo
-router.get('/holamundo', (req, res) => res.send('Hello World!'));
+router.get('/users', (req, res) => res.send('Rutas de usuario')/*TODO: agregar controllers*/);
 
 module.exports = router;
