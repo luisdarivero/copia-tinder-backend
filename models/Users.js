@@ -36,7 +36,8 @@ const usersSchema = new Schema({
     },
     birth_date:{
         type: Date,
-        required: true
+        required: true,
+        max: Date.now() - (31557600000 * 18)
     },
     location: {
         type: {
