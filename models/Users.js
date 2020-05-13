@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 const SALT_WORK_FACTOR = 10;
 const { userPublicInformationSchema } = require('./UserPublicInformation');
+const { matchesSchema } = require('./Matches');
 
 //Generos validos
 var validGenders = {
@@ -103,7 +104,10 @@ const usersSchema = new Schema({
         required: true,
         default: true
     },
-    user_public_information: userPublicInformationSchema
+    user_public_information: userPublicInformationSchema,
+    matches:[
+        matchesSchema
+    ]
 });
 
 //antes de guardar el objeto hashear la contraseña
@@ -128,6 +132,6 @@ usersSchema.pre('save', function(next) {
   });
 });
 
-const Users = mongoose.model('User', usersSchema);
+const Users = mongoose.model('Users', usersSchema);
 
 module.exports = Users;
