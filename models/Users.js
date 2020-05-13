@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-//TODO: añadir const bcrypt = require('bcrypt');
-//TODO: añadir const SALT_WORK_FACTOR = 10;
+const bcrypt = require('bcrypt');
+const SALT_WORK_FACTOR = 10;
 
 //Generos validos
 var validGenders = {
@@ -104,7 +104,7 @@ const usersSchema = new Schema({
     }
 });
 
-/* TODO: antes de guardar el objeto hashear la contraseña
+//antes de guardar el objeto hashear la contraseña
 usersSchema.pre('save', function(next) {
   const user = this;
 
@@ -124,7 +124,7 @@ usersSchema.pre('save', function(next) {
         next();
     });
   });
-});*/
+});
 
 const Users = mongoose.model('User', usersSchema);
 
