@@ -8,8 +8,7 @@ module.exports = {
             name: Joi.string().required(),
             gender: Joi.string().required().valid('Mujer').valid('Hombre'),
             //minimo 18 años de edad
-            birth_date: Joi.date().required().max(Date.now() - (31557600000 * 18)),
-            show_people_with_gender: Joi.string().required().valid('Mujer').valid('Hombre'),
+            birth_date: Joi.date().required().max(Date.now() - (31557600000 * 18))
         }),
     }),
 };
