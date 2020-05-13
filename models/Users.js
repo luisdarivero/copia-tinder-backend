@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 const SALT_WORK_FACTOR = 10;
+const { userPublicInformationSchema } = require('./UserPublicInformation');
 
 //Generos validos
 var validGenders = {
@@ -101,7 +102,8 @@ const usersSchema = new Schema({
         type: Boolean,
         required: true,
         default: true
-    }
+    },
+    user_public_information: userPublicInformationSchema
 });
 
 //antes de guardar el objeto hashear la contraseña
