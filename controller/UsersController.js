@@ -1,4 +1,5 @@
 const { UsersService, UserPublicInformationService } = require('../services');
+const utils = require('../utils');
 
 module.exports = {
   signup: async (req, res) => {
@@ -28,7 +29,7 @@ module.exports = {
       if (!isMatch) res.status(400).send({ message: 'Invalid credentials' });
       const token = utils.createToken({
         id: user._id,
-        name: user.name,
+        name: user.first_name,
         email: user.email,
       });
       res.status(200).send({ message: "Welcome", token });
