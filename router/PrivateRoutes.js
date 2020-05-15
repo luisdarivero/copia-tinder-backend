@@ -4,6 +4,7 @@ const router = express.Router();
 
 //TODO: añadir rutas privadas
 router.use(require('./UsersRoutes'));
+router.use(require('./NearUsersInteractionRoutes'));
 //router.use(require('./RolesRoutes'));
 //router.use(require('./BooksRoutes'));
 

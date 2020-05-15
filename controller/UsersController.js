@@ -2,6 +2,7 @@ const { UsersService, UserPublicInformationService } = require('../services');
 const utils = require('../utils');
 
 module.exports = {
+  
   signup: async (req, res) => {
     try {
       //Se crea el modelo de informacion publica del usuario
@@ -16,7 +17,6 @@ module.exports = {
       const user = await UsersService.create(req.body);
       res.status(201).send({ message: 'signup succesfull', user });
     } catch (err) {
-      console.log(err);
       res.status(400).send({ message: 'Error signin up', err }); 
     }
   },
@@ -36,6 +36,18 @@ module.exports = {
     } catch (error) {
       console.log(error);
       res.status(400).send({ message: 'Error on login', error });
+    }
+  },
+  find_near_users: async (req, res) => {
+    try{
+      const { id } = req.params;
+      const user = await UsersService.findById(id);
+      const near_users = await UsersService.find_near_users(user);
+      //console.log(user);
+      res.status(200).send({message: 'Success', near_users});
+    }
+    catch{
+      res.status(400).send({ message: 'Error finding near users', err });    
     }
   }
 }
