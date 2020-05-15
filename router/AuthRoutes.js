@@ -7,6 +7,6 @@ const { UsersController } = require('../controller');
 const { UsersValidator } = require('../validators')
 
 router.post('/users/signup', UsersValidator.signup, UsersController.signup);
-//TODO: router.post('/users/login', UsersController.login);
+router.post('/users/login', UsersController.login);
 
 module.exports = router;
