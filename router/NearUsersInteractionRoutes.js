@@ -2,8 +2,9 @@
 const express = require('express');
 const router = express.Router();
 
+const { UsersController } = require('../controller');
+
 //TODO: borrar, este es solo un ejemplo
-router.get('/users', (req, res) => res.send('Rutas de usuario')/*TODO: agregar controllers*/);
-router.use(require('./NearUsersInteractionRoutes'));
+router.get('/nearUsers/:id', UsersController.find_near_users);
 
 module.exports = router;
