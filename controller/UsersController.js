@@ -1,4 +1,5 @@
 const { UsersService, UserPublicInformationService } = require('../services');
+const utils = require('../utils');
 
 module.exports = {
   signup: async (req, res) => {
@@ -20,6 +21,21 @@ module.exports = {
     }
   },
   login: async (req, res) => {
-    //TODO: logica de login
+    const { email, password } = req.body;
+    try {
+      const user = await UsersService.findByEmail(email);
+      if (!user) res.status(404).send({ message: 'User not found' });
+      const isMatch = UsersService.comparePasswords(password, user.password);
+      if (!isMatch) res.status(400).send({ message: 'Invalid credentials' });
+      const token = utils.createToken({
+        id: user._id,
+        name: user.first_name,
+        email: user.email,
+      });
+      res.status(200).send({ message: "Welcome", token });
+    } catch (error) {
+      console.log(error);
+      res.status(400).send({ message: 'Error on login', error });
+    }
   }
 }
