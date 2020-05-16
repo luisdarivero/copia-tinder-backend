@@ -41,13 +41,15 @@ module.exports = {
   find_near_users: async (req, res) => {
     try{
       const { id } = req.params;
-      const user = await UsersService.findById(id);
-      query = utils.generateQuery_find_near_users(user);
+      let user = await UsersService.findById(id);
+      user = await UsersService.updateLocation(user, req.body);
+      const query = utils.generateQuery_find_near_users(user);
       const near_users = await UsersService.find_near_users(query);
       //console.log(user);
       res.status(200).send({message: 'Success', near_users});
     }
     catch(err){
+      console.log(err);
       res.status(400).send({ message: 'Error finding near users', err });    
     }
   }

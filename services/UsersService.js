@@ -7,7 +7,7 @@ module.exports = {
     const newUser = new Users(body);
     return newUser.save();
   },
-  find_near_users: async (interestedUser) => {
+  find_near_users: async (query) => {
     return  await Users.aggregate(
       query
     );
@@ -19,5 +19,9 @@ module.exports = {
   },
   comparePasswords: (candidatePassword, password) => {
     return bcrypt.compareSync(candidatePassword, password);
+  },
+  updateLocation: (user, body) =>{
+    Object.assign(user.location, body);
+    return user.save();
   }
 }
