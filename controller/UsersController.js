@@ -42,11 +42,12 @@ module.exports = {
     try{
       const { id } = req.params;
       const user = await UsersService.findById(id);
-      const near_users = await UsersService.find_near_users(user);
+      query = utils.generateQuery_find_near_users(user);
+      const near_users = await UsersService.find_near_users(query);
       //console.log(user);
       res.status(200).send({message: 'Success', near_users});
     }
-    catch{
+    catch(err){
       res.status(400).send({ message: 'Error finding near users', err });    
     }
   }

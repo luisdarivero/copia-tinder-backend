@@ -51,7 +51,7 @@ const usersSchema = new Schema({
         coordinates: {
           type: [Number], //longitude (between -180 and 180),latitude(between -90 and 90) 
           required: true,
-          default: []
+          default: [0,0]
         }
     },
     people_I_dont_like: [
