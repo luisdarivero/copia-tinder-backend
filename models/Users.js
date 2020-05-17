@@ -27,10 +27,6 @@ const usersSchema = new Schema({
         type: String,
         required: true,
     },
-    name: {
-        type: String,
-        required: true,
-    },
     gender:{
         type: String,
         required:true,
@@ -51,7 +47,7 @@ const usersSchema = new Schema({
         coordinates: {
           type: [Number], //longitude (between -180 and 180),latitude(between -90 and 90) 
           required: true,
-          default: []
+          default: [-180,-90]
         }
     },
     people_I_dont_like: [
