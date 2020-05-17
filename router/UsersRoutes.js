@@ -1,9 +1,16 @@
 //Se crea router usando express
 const express = require('express');
 const router = express.Router();
+const { UsersController } = require('../controller');
+const { UsersValidator } = require('../validators')
 
 //TODO: borrar, este es solo un ejemplo
-router.get('/users', (req, res) => res.send('Rutas de usuario')/*TODO: agregar controllers*/);
+router.post('/users', UsersValidator.create, UsersController.create);
+router.get('/users', UsersController.find);
+router.get('/users/:id', UsersController.findById);
+router.patch('/users/:id', UsersController.findByIdAndUpdate);
+router.delete('/users/:id', UsersController.findByIdAndDelete);
+
 router.use(require('./NearUsersInteractionRoutes'));
 
 module.exports = router;
