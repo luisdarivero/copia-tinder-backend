@@ -11,6 +11,15 @@ module.exports = {
             birth_date: Joi.date().required().max(Date.now() - (31557600000 * 18))
         }),
     }),
+    create: celebrate({
+        [Segments.BODY]: Joi.object().keys({
+          name: Joi.string().required(),
+          gender: Joi.string().required().valid('Mujer').valid('Hombre'),
+          email: Joi.string().email().required(),
+          password: Joi.string(),
+          birth_date: Joi.date().required().max(Date.now() - (31557600000 * 18))
+        }),
+      }),
     find_near_users: celebrate({
         [Segments.BODY]: Joi.object().keys({
             coordinates:
