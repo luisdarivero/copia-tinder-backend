@@ -22,11 +22,11 @@ module.exports = {
       }),
     find_near_users: celebrate({
         [Segments.BODY]: Joi.object().keys({
-            coordinates:
-            [
+            coordinates: Joi.array().length(2).items(
+            
                 Joi.number().required().min(-180.0).max(180),
                 Joi.number().required().min(-90).max(90)
-            ] 
+            )
         }),
     })
 };
