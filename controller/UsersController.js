@@ -1,5 +1,5 @@
 const { UsersService, UserPublicInformationService } = require('../services');
-// const utils = require('../utils');
+const utils = require('../utils');
 
 module.exports = {
   
@@ -15,9 +15,9 @@ module.exports = {
         req.body.show_people_with_gender = 'Mujer'
       }
       const user = await UsersService.create(req.body);
-      res.status(201).send({ message: 'signup succesfull', user });
+      return res.status(201).send({ message: 'signup succesfull', user });
     } catch (err) {
-      res.status(400).send({ message: 'Error signin up', err }); 
+      return res.status(400).send({ message: 'Error signin up', err }); 
     }
   },
   login: async (req, res) => {
@@ -32,10 +32,9 @@ module.exports = {
         name: user.first_name,
         email: user.email,
       });
-      res.status(200).send({ message: "Welcome", token });
+      return res.status(200).send({ message: "Welcome", token });
     } catch (error) {
-      console.log(error);
-      res.status(400).send({ message: 'Error on login', error });
+      return res.status(400).send({ message: 'Error on login', error });
     }
   },
   create: async (req, res) => {
@@ -92,11 +91,21 @@ module.exports = {
       const query = utils.generateQuery_find_near_users(user);
       const near_users = await UsersService.find_near_users(query);
       //console.log(user);
-      res.status(200).send({message: 'Success', near_users});
+      return res.status(200).send({message: 'Success', near_users});
     }
     catch(err){
-      console.log(err);
-      res.status(400).send({ message: 'Error finding near users', err });    
+      return res.status(400).send({ message: 'Error finding near users', err });    
+    }
+  },
+  add_person_I_dont_like: async(req, res) => {
+    try{
+      const { id, user_I_dont_like} = req.params;
+      let user = await UsersService.findById(id);
+      user = await UsersService.add_person_I_dont_like(user, user_I_dont_like);
+      return res.status(200).send({message: 'Success', user_I_dont_like});
+    }
+    catch(err){
+      return res.status(400).send({ message: 'Error finding near users', err });
     }
   },
   findByIdAndDelete: async (req, res) => {
