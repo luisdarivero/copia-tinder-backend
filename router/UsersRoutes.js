@@ -11,6 +11,4 @@ router.get('/users/:id', UsersController.findById);
 router.patch('/users/:id', UsersController.findByIdAndUpdate);
 router.delete('/users/:id', UsersController.findByIdAndDelete);
 
-router.use(require('./NearUsersInteractionRoutes'));
-
 module.exports = router;
