@@ -5,7 +5,7 @@ module.exports = {
     try {
       const { authorization } = req.headers;
       if (!req.headers.authorization) {
-        return res.status(403).send({ error: "Authorization header must be provided" });
+        return res.status(401).send({ error: "Authorization header must be provided" });
       }
       
       // authorization contiene: "Bearer token";
@@ -16,7 +16,21 @@ module.exports = {
       
        
     } catch (error) {
-      res.status(403).send({ error })
+      return res.status(401).send({ error })
     }
   },
+
+  verifySameUser:(req,res,next) => {
+    try{
+      const tokenUserID= req.decoded.data.id;
+      const { id } = req.params;
+      if(tokenUserID !== id){
+        return res.status(403).send({ error: "You don´t have authorization to use this endpoint" });
+      }
+      next();
+    }
+    catch(err){
+      return res.status(403).send({ message: "Error al validar el usuario", error })
+    }
+  }
 };
