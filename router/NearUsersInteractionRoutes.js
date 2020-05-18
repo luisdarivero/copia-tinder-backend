@@ -11,7 +11,7 @@ const { UsersValidator } = require('../validators')
 const { verifySameUser } = require('../middlewares');
 
 //TODO: borrar, este es solo un ejemplo
-router.get('/nearUsers/:id',
+router.post('/nearUsers/:id',
             UsersValidator.find_near_users, 
             verifySameUser,
             UsersController.find_near_users

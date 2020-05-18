@@ -7,7 +7,7 @@ const { verifyToken } = require('../middlewares');
 router.use(require('./PublicRoutes'));
 
 //Se añaden rutas privadas
-// router.use(verifyToken);
+router.use(verifyToken);
 router.use(require('./PrivateRoutes'));
 
 module.exports = router;

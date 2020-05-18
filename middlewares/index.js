@@ -30,7 +30,7 @@ module.exports = {
       next();
     }
     catch(err){
-      return res.status(403).send({ message: "Error al validar el usuario", error })
+      return res.status(403).send({ message: "Error al validar el usuario", err })
     }
   }
 };

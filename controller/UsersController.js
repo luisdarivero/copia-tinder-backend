@@ -113,9 +113,9 @@ module.exports = {
     try {
       const user = await UsersService.findById(id);
       await UsersService.update(user, { active_user: false });
-      res.status(204).send();
+     return  res.status(204).send();
     } catch (err) {
-      res.status(404).send({ message: 'Error deleting user', err });
+      return res.status(404).send({ message: 'Error deleting user', err });
     }
   },
 }
