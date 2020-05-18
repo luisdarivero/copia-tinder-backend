@@ -1,19 +1,19 @@
-// const jwt = require('jsonwebtoken');
-// const JWT_SECRET = process.env.JWT_SECRET;
+const jwt = require('jsonwebtoken');
+const JWT_SECRET = process.env.JWT_SECRET;
 
 
 module.exports = {
-    // createToken: (payload) => {
-    //   const token = jwt.sign({ 
-    //     data: payload
-    //   }, 
-    //   JWT_SECRET,
-    //   {
-    //     expiresIn: "30 days"
-    //   }
-    //   );
-    //   return token;
-    // },
+    createToken: (payload) => {
+      const token = jwt.sign({ 
+        data: payload
+      }, 
+      JWT_SECRET,
+      {
+        expiresIn: "30 days"
+      }
+      );
+      return token;
+    },
     generateQuery_find_near_users: (user) => {
       const query = [
         {
