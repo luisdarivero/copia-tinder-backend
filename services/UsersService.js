@@ -23,5 +23,12 @@ module.exports = {
   updateLocation: (user, body) =>{
     Object.assign(user.location, body);
     return user.save();
+  },
+  add_person_I_dont_like: (user, person_I_dont_like) =>{
+    user.people_I_dont_like.push(person_I_dont_like);
+    return user.save();
+  },
+  get_user_people_I_like: () =>{
+    //TODO: implementar
   }
 }
