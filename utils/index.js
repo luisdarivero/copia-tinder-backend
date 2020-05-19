@@ -14,6 +14,13 @@ module.exports = {
       );
       return token;
     },
+    createMatchStructure: (chat, user) =>{
+      const matchStructure = {
+        chat: chat,
+        user: user
+      };
+      return matchStructure;
+    },
     generateQuery_find_near_users: (user) => {
       const query = [
         {

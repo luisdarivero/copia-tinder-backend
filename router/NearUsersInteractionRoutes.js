@@ -22,4 +22,9 @@ router.post('/nearUsers/:id/dislike/:user_I_dont_like',
             UsersController.add_person_I_dont_like
             );
 
+router.post('/nearUsers/:id/like/:user_I_like',
+            verifySameUser,
+            UsersController.like
+            );
+
 module.exports = router;
