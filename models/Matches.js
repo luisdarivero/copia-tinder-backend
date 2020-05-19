@@ -13,10 +13,10 @@ const matchesSchema = new Schema({
         ref: 'Users',
         required: true
     },
-    pending_notifications:{
+    pending_notifications:{ //Se ha notificado un nuevo match al usuario?
         type: Boolean,
         required: true,
-        default: false
+        default: true
     }
 },{_id : false});
 
