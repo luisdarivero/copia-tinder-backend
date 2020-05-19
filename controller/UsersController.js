@@ -1,4 +1,4 @@
-const { UsersService, UserPublicInformationService } = require('../services');
+const { UsersService, UserPublicInformationService, ChatsService, MatchesService } = require('../services');
 const utils = require('../utils');
 
 module.exports = {
@@ -113,9 +113,34 @@ module.exports = {
     try {
       const user = await UsersService.findById(id);
       await UsersService.update(user, { active_user: false });
-     return  res.status(204).send();
+      return  res.status(204).send();
     } catch (err) {
       return res.status(404).send({ message: 'Error deleting user', err });
     }
   },
+  like: async (req,res) =>{
+    try{
+      const {id, user_I_like} = req.params;
+      let user = await UsersService.findById(id);
+      user = await UsersService.add_person_I_like(user, user_I_like)
+      if (! await UsersService.is_user_id_in_I_like(user_I_like, id)){
+        //user_I_like hasnt marked this user as liked
+        return res.status(200).send({message: 'Person added to people I like', user});
+      }
+      //Make a match
+      const newChat = await ChatsService.create({participants: [id, user_I_like]});
+      const chatID = newChat._id;
+      //First save match on user that perform the request
+      user = await UsersService.add_match(user, utils.createMatchStructure(chatID, user_I_like));
+      //then save match on user I like
+      let other_user = await UsersService.findById(user_I_like);
+      await UsersService.add_match(other_user, utils.createMatchStructure(chatID, id));
+      //return response status with message
+      return res.status(200).send({message: 'Match!', user});
+    }
+    catch(err){
+      console.log(err);
+      return res.status(400).send({ message: 'Error using like function', err });
+    }
+  }
 }
