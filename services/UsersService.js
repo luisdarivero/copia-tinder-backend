@@ -36,7 +36,26 @@ module.exports = {
     user.people_I_dont_like.push(person_I_dont_like);
     return user.save();
   },
-  get_user_people_I_like: () =>{
-    //TODO: implementar
+  get_user_people_I_like: (userID) =>{
+    return Users.findById(userID, 'people_I_like');
+  },
+  is_user_id_in_I_like: (baseUserID, userToSearchID) => {
+    return Users.findOne(
+      {$and:[{_id: baseUserID},{people_I_like: userToSearchID}]},
+      (err, user) =>{
+        if(err) throw 'Error al buscar usuario con servicio "is_user_id_in_list"';
+        if(!user) return false;
+        return true;
+      }
+    );
+  },
+  add_person_I_like: (user, person_I_like) =>{
+    user.people_I_like.push(person_I_like);
+    return user.save();
+  },
+  add_match: (user,match) =>{
+    user.matches.push(match);
+    return user.save();
   }
+
 }

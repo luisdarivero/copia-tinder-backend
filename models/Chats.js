@@ -1,13 +1,19 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const { messagesSchema } = require('./Messages');
 
 const chatsSchema = new Schema({
     participants: [
-        {type: Schema.Types.ObjectId, ref: 'Users',required: true}
+        {type: Schema.Types.ObjectId, ref: 'Users'}
     ],
-    Messages: {
-        //TODO:
+    pending_notifications:{
+        type: Boolean,
+        required: true,
+        default: false
     },
+    Messages: [
+        messagesSchema
+    ]
     
 });
 
