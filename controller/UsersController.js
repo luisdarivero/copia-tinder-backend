@@ -72,7 +72,13 @@ module.exports = {
     }
   },
   findByIdAndUpdate: async (req, res) => {
-   
+    
+      if (req.files) {
+      const { photo } = req.files;
+      const upload = await utils.uploadFile(photo.tempFilePath);
+      if (req.body.user_public_information = UserPublicInformationService.update(req.body));
+      if (upload) req.body.profile_photos = upload.url;
+    }
     const { id } = req.params;
     const { body } = req;
     try {

@@ -7,13 +7,10 @@ const userPublicInformationSchema = new Schema({
         required: true,
     },
     profile_photos:{
-        1: {type: String, default: null},
-        2: {type: String, default: null},
-        3: {type: String, default: null},
-        4: {type: String, default: null},
-        5: {type: String, default: null},
-        6: {type: String, default: null}
-    },
+        type: String, default: null,
+        type: String, default: null,
+        type: String, default: null,
+          },
     profile_information:{
         type: String,
         default: null

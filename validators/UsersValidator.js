@@ -28,5 +28,11 @@ module.exports = {
                 Joi.number().required().min(-90).max(90)
             )
         }),
-    })
+    }),
+    //Posteriormente se puede agregar un validador desde rutas de usuario
+    // upload_photo: celebrate({
+    //     [Segments.BODY]: Joi.object().keys({
+    //         photo: Joi.string().required()
+    //     }),
+    // })
 };
