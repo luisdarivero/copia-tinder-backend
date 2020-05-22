@@ -1,6 +1,7 @@
 //Se declara el servidor usando express
 const express = require('express');
 const server = express();
+const fileUpload = require('express-fileupload');
 const cors= require('cors');
 //Se define el puerto a utilizar
 const PORT = process.env.PORT || 3000;
@@ -9,6 +10,10 @@ const { errors } = require('celebrate');
 //Se añade al servidor la opción de usar json y urlencoded
 server.use(express.urlencoded({ extended: true }));
 server.use(express.json());
+server.use(fileUpload({
+    useTempFiles: true,
+    tempFileDir : '/tmp/',
+  }));
 server.use(cors())
 
 // Endpoints: se añaden rutas al servidor
