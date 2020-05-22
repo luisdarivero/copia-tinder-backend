@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 module.exports = {
   find: () => Users.find({active_user: true}),
-  findById: (id) => Users.findById(id),
+  findById: (id) => Users.findById(id).populate('matches.user','name _id'),
   create: (body) => {
     const newUser = new Users(body);
     return newUser.save();
