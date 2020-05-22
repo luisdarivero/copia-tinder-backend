@@ -26,13 +26,14 @@ module.exports = {
       const user = await UsersService.findByEmail(email);
       if (!user) res.status(404).send({ message: 'User not found' });
       const isMatch = UsersService.comparePasswords(password, user.password);
-      if (!isMatch) res.status(400).send({ message: 'Invalid credentials' });
-      const token = utils.createToken({
+      if (!isMatch) return res.status(400).send({ message: 'Invalid credentials' });
+      const tokenContent = {
         id: user._id,
         name: user.first_name,
-        email: user.email,
-      });
-      return res.status(200).send({ message: "Welcome", token });
+        email: user.email
+      };
+      const token = utils.createToken(tokenContent);
+      return res.status(200).send({ message: "Welcome", token, tokenContent });
     } catch (error) {
       return res.status(400).send({ message: 'Error on login', error });
     }
